@@ -3,6 +3,8 @@ class Lunch < ActiveRecord::Base
 
   before_save :set_state
 
+  scope :pending, -> { where('starts_on > ? and ends_on > ?', Date.today, Date.today) }
+
   private
 
   def set_state
@@ -13,7 +15,7 @@ class Lunch < ActiveRecord::Base
     elsif starts_on < Date.today && ends_on < Date.today
       self.state = 'ended'
     else
-      raise Exception.new(message: "Cannot be saved, invalid dates.")
+      raise Exception.new "Cannot be saved, invalid dates."
     end
   end
 end

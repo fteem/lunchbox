@@ -16,6 +16,17 @@ RSpec.describe Lunch, :type => :model do
   it { should respond_to(:ends_on) }
   it { should be_valid }
 
+  describe "Scopes" do
+    it '#pending returns pending lunches' do
+      l1 = FactoryGirl.create :pending_lunch
+      l2 = FactoryGirl.create :started_lunch
+      l3 = FactoryGirl.create :pending_lunch
+
+      pending_lunches = Lunch.pending
+      expect(pending_lunches).to eq [l1, l3]
+    end
+  end
+
   describe "Validations" do
     it "without a name - should be invalid" do
       subject.name = ""
@@ -50,17 +61,17 @@ RSpec.describe Lunch, :type => :model do
 
   describe "States" do
     it "should be pending when created" do
-      lunch = FactoryGirl.create :lunch
+      lunch = FactoryGirl.create :pending_lunch
       expect(lunch.state).to eq "pending"
     end 
 
     it "should be started if starts_on is in the past and ends_on is in the future" do
-      lunch = FactoryGirl.create :lunch, starts_on: Date.today - 1.day, ends_on: Date.today + 1.day
+      lunch = FactoryGirl.create :started_lunch
       expect(lunch.state).to eq "started"
     end
 
     it "should be ended if ends_on is in the past" do
-      lunch = FactoryGirl.create :lunch, starts_on: Date.today - 2.days, ends_on: Date.today - 1.day
+      lunch = FactoryGirl.create :ended_lunch
       expect(lunch.state).to eq "ended"
     end
 
