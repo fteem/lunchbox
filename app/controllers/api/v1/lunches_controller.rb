@@ -1,9 +1,9 @@
-class LunchesController < ApplicationController
+class Api::V1::LunchesController < ApplicationController
   respond_to :json
 
   def index
     @lunches = Lunch.pending
-    renspond_with @lunches
+    respond_with @lunches
   end
   
 
