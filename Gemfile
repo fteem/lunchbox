@@ -26,4 +26,9 @@ end
 
 group :development do
   gem 'html2haml'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-migrate'
+  gem 'guard-bundler', require: false
+  gem 'guard-spring'
 end
