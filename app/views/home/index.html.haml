@@ -1,0 +1,4 @@
+%section{"ng-controller" => "LunchesController as lunchesCtrl"}
+  %ul
+    %li{"ng-repeat" => 'lunch in lunchesCtrl.lunches'}
+      {{ lunch.name }}
