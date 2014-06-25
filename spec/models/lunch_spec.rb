@@ -16,6 +16,11 @@ RSpec.describe Lunch, :type => :model do
   it { should respond_to(:ends_on) }
   it { should be_valid }
 
+  describe "Associations" do
+    it { should belong_to(:organizer).class_name("User") }
+    it { should have_and_belong_to_many(:attendants).class_name("User") }
+  end
+
   describe "Scopes" do
     it '#pending returns pending lunches' do
       l1 = FactoryGirl.create :pending_lunch

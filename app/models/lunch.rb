@@ -3,6 +3,9 @@ class Lunch < ActiveRecord::Base
 
   before_save :set_state
 
+  belongs_to :organizer, class_name: 'User'
+  has_many :attendants, class_name: 'User', foreign_key: 'attended_lunch_id'
+
   scope :pending, -> { where('starts_on > ? and ends_on > ?', Date.today, Date.today) }
 
   private
