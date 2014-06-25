@@ -16,8 +16,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-gem 'spring',        group: :development
-
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails'
@@ -25,10 +23,15 @@ group :development, :test do
 end
 
 group :development do
+  gem 'spring'
   gem 'html2haml'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-migrate'
   gem 'guard-bundler', require: false
   gem 'guard-spring'
+end
+
+group :test do
+  gem 'shoulda-matchers', require: false
 end
