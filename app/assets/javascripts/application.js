@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require angular
+//= require angular.min.js
+//= require angular-resource.min.js
 //= require init
-//= require controllers/lunchesController
+//= require_tree ./resources
+//= require_tree ./controllers
+//= require_tree ./directives

@@ -1,13 +1,17 @@
-app.controller("LunchesController", [ '$http', function($http){
-  var that = this;
-  this.lunches = {};
-  this.errors = {};
+lunchbox.controller("LunchesController", [ '$scope', 'Lunch', function($scope, Lunch){
+  $scope.lunches = Lunch.query();
+  $scope.lunch = new Lunch();
 
-  $http({method: 'GET', url: '/api/v1/lunches'}).
-    success(function(data, status, headers, config) {
-      that.lunches = data;
-    }).
-    error(function(data, status, headers, config) {
-      that.errors = data;
-    });
+  $scope.saveLunch = function(){
+    newLunch = { 
+        name: $scope.lunch.name, 
+        description: $scope.lunch.description,
+        starts_on: $scope.lunch.startsOn,
+        ends_on: $scope.lunch.endsOn
+    }
+    lunch = Lunch.save(newLunch)
+    $scope.lunches.push(lunch)
+  };
+
+
 }]);

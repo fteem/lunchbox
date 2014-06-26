@@ -1,4 +1,16 @@
-%section{"ng-controller" => "LunchesController as lunchesCtrl"}
+%section{"ng-controller" => "LunchesController"}
   %ul
-    %li{"ng-repeat" => 'lunch in lunchesCtrl.lunches'}
-      {{ lunch.name }}
+    %li{"ng-repeat" => 'lunch in lunches'}
+      {{ lunch }}
+
+
+  %form{"ng-submit" => "saveLunch()", "novalidate" => "true"}
+    Name
+    %input{"type" => "text", "ng-model" => "lunch.name"}
+    Description
+    %input{"type" => "text", "ng-model" => "lunch.description"}
+    Starts On
+    %input{"type" => "text", "ng-model" => "lunch.startsOn"}
+    Ends On
+    %input{"type" => "text", "ng-model" => "lunch.endsOn"}
+    %input{"type" => "submit"}
