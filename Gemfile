@@ -9,8 +9,7 @@ gem 'haml'
 gem 'devise'
 gem 'therubyracer',  platforms: :ruby
 gem 'jquery-rails'
-gem 'angularjs-rails'
-
+gem "active_model_serializers"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
